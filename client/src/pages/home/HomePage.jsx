@@ -6,20 +6,16 @@ import HomeFavIcon from "../../assets/images/home-favicon.png";
 import "../../index.css";
 import "./HomePage.css";
 
-export const HomePage = () => {
+export const HomePage = ({ cart }) => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios.get("/api/products").then((response) => {
       setProducts(response.data);
     });
 
-    axios.get("/api/cart-items").then((response) => {
-      setCart(response.data);
-    });
+    
   }, []);
-
   return (
     <>
       <link rel="icon" type="image/svg+xml" href={HomeFavIcon} />

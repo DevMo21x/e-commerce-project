@@ -2,6 +2,7 @@ import "./CheckoutPage.css";
 import CheckoutHeader from "./CheckoutHeader";
 import CheckoutFavIcon from "../../assets/images/cart-favicon.png"
 const CheckoutPage = () => {
+
   return (
     <>
       <link rel="icon" type="image/svg+xml" href={CheckoutFavIcon} />
