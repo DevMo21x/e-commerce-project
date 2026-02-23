@@ -1,12 +1,13 @@
 import { Link } from "react-router";
 import Header from "../../components/Header";
 import BuyAgainIcon from "../../assets/images/icons/buy-again.png";
+import OrdersFavIcon from "../../assets/images/orders-favicon.png"
 import "./OrdersPage.css";
 
 const OrdersPage = () => {
   return (
     <>
-      <link rel="icon" type="image/svg+xml" to="/orders-favicon.png" />
+      <link rel="icon" type="image/svg+xml" href={OrdersFavIcon} />
       <title>Orders</title>
       <Header />
 
