@@ -20,7 +20,9 @@ const Header = ({ cart = [] }) => {
       </div>
 
       <div className="middle-section">
-        <input className="search-bar" type="text" placeholder="Search" />
+        <input className="search-bar" type="text" placeholder="Search" onClick={(e)=>{
+          console.log(e.target.value)
+        }}/>
 
         <button className="search-button">
           <img className="search-icon" src={SearchIcon} />

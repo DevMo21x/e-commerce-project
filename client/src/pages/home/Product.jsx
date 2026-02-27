@@ -3,7 +3,8 @@ import axios from "axios";
 import formatMoney from "../../utils/money";
 import { useState } from "react";
 const Product = ({ getCartData, product }) => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [addedStatus, setAddedStatus] = useState(false);
 
   const addToCart = async () => {
     await axios.post("/api/cart-items", {
@@ -11,6 +12,11 @@ const Product = ({ getCartData, product }) => {
       quantity,
     });
     await getCartData();
+    setAddedStatus(true);
+
+    setInterval(() => {
+      setAddedStatus(false);
+    }, 2000);
   };
 
   const selectQuantity = (e) => {
@@ -39,7 +45,6 @@ const Product = ({ getCartData, product }) => {
 
       <div className="product-quantity-container">
         <select value={quantity} onChange={selectQuantity}>
-          <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -55,7 +60,7 @@ const Product = ({ getCartData, product }) => {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart">
+      <div className="added-to-cart" style={{ opacity: addedStatus ? 1 : 0 }}>
         <img src={CheckmarkIcon} />
         Added
       </div>

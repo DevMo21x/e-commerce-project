@@ -9,7 +9,7 @@ import "./OrdersPage.css";
 // import formatMoney from "../../utils/money";
 import OrdersGrid from "./OrdersGrid";
 
-const OrdersPage = ({ cart }) => {
+const OrdersPage = ({ cart, getCartData }) => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const OrdersPage = ({ cart }) => {
 
       <div className="orders-page">
         <div className="page-title">Your Orders</div>
-        <OrdersGrid orders={orders} />
+        <OrdersGrid orders={orders} getCartData={getCartData} />
       </div>
     </>
   );
