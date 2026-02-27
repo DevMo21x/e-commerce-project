@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router";
 import Header from "../../components/Header";
 // import CheckmarkIcon from "../../assets/images/icons/checkmark.png";
 import HomeFavIcon from "../../assets/images/home-favicon.png";
@@ -9,15 +10,22 @@ import "./HomePage.css";
 
 export const HomePage = ({ cart, getCartData }) => {
   const [products, setProducts] = useState([]);
-
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search");
   useEffect(() => {
     const getHomeData = async () => {
-      const response = await axios.get("/api/products");
-      setProducts(response.data);
+
+      if (search) {
+        const response = await axios.get(`/api/products/?search=${search}`);
+        setProducts(response.data);
+      } else {
+        const response = await axios.get("/api/products");
+        setProducts(response.data);
+      }
     };
 
     getHomeData();
-  }, []);
+  }, [search]);
   return (
     <>
       <link rel="icon" type="image/svg+xml" href={HomeFavIcon} />
@@ -26,7 +34,7 @@ export const HomePage = ({ cart, getCartData }) => {
       <Header cart={cart} />
 
       <div className="home-page">
-        <ProductsGrid products={products} getCartData={getCartData}/>
+        <ProductsGrid products={products} getCartData={getCartData} />
       </div>
     </>
   );
