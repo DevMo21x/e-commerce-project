@@ -7,9 +7,10 @@ import "./Header.css";
 import { useState } from "react";
 const Header = ({ cart = [] }) => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const searchText = searchParams.get("search");
   const [search, setSearch] = useState(searchText || "");
+  
+  const navigate = useNavigate();
 
   const updateSearchInput = (e) => {
     setSearch(e.target.value);
