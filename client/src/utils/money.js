@@ -1,6 +1,9 @@
-
 const formatMoney = (amountCents) => {
-  return `$${(amountCents / 100).toFixed(2)}`
-}
+  if (amountCents < 0) {
+    amountCents = amountCents * -1;
+    return `-$${(amountCents / 100).toFixed(2)}`;
+  }
+  return `$${(amountCents / 100).toFixed(2)}`;
+};
 
-export default formatMoney
+export default formatMoney;
